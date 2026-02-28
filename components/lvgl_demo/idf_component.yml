@@ -1,0 +1,4 @@
+idf_component.yml:
+version: 0.0.1
+dependencies:
+  lvgl/lvgl: "9.1.0"
