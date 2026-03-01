@@ -18,7 +18,6 @@
 #define TFT_SCLK 14
 #define TFT_CS   15
 
-static const char *TAG = "kidsbox";
 char ip_str[16];
 
 static void nvs_init_or_recover(void)
@@ -38,6 +37,8 @@ void app_main(void)
     
     nvs_init_or_recover();
 
+;
+
     wifi_manager_start_sta();
     printf("Finished WiFi Initialization\n");
     printf("Initiating Display...\n");
@@ -52,4 +53,9 @@ void app_main(void)
     printf("LVGL Demo Start...\n");
     lvgl_demo_start();
     printf("LVGL Finished\n");
+    printf("Initializing SD Card....\n");
+        // Initialize SD card and run demo
+    extern esp_err_t sd_card_init_and_demo(void);
+    sd_card_init_and_demo();
+    printf("SD Card Initialized\n");
 }

@@ -1,3 +1,4 @@
+
 #include "esp_log.h"
 #include "driver/spi_master.h"
 #include "esp_lcd_panel_io.h"
@@ -8,7 +9,9 @@
 #include "driver/gpio.h"
 #include "esp_heap_caps.h"
 
-#define LCD_HOST    SPI2_HOST
+#define LCD_HOST    SPI2_HOST  //SPI Bus for TFT display
+#define TFT_DMA_CH 1 // DMA channel for TFT SPI
+
 #define PIN_NUM_MOSI 13
 #define PIN_NUM_CLK  14
 #define PIN_NUM_CS   15
@@ -29,7 +32,7 @@ void display_init(void) {
 
     ESP_LOGI(TAG, "Initialize SPI bus");
     const spi_bus_config_t bus_config = ILI9341_PANEL_BUS_SPI_CONFIG(PIN_NUM_CLK, PIN_NUM_MOSI, LCD_H_RES * 80 * sizeof(uint16_t));
-    ESP_ERROR_CHECK(spi_bus_initialize(LCD_HOST, &bus_config, SPI_DMA_CH_AUTO));
+    ESP_ERROR_CHECK(spi_bus_initialize(LCD_HOST, &bus_config, TFT_DMA_CH));
 
     ESP_LOGI(TAG, "Install panel IO");
     esp_lcd_panel_io_handle_t io_handle = NULL;

@@ -76,9 +76,5 @@ void lvgl_demo_start(void) {
     lv_obj_center(label);
 
     ESP_LOGI(TAG, "LVGL demo started");
-
-    while (1) {
-        lv_timer_handler();
-        vTaskDelay(pdMS_TO_TICKS(5));
-    }
+   
 }
